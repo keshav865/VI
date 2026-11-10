@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My To-Do App</title>
+
+    <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>My Tasks</h1>
+            <p>Organize your day, one task at a time.</p>
+        </header>
+
+        <!-- Task Input -->
+        <form id="taskForm">
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter a new task..."
+                autocomplete="off"
+            >
+
+            <button type="submit" id="submitBtn">
+                Add Task
+            </button>
+        </form>
+
+        <p id="errorMessage"></p>
+
+        <!-- Statistics -->
+        <div class="stats">
+
+            <div class="stat-card">
+                <h2 id="totalTasks">0</h2>
+                <p>Total Tasks</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="completedTasks">0</h2>
+                <p>Completed</p>
+            </div>
+
+            <div class="stat-card">
+                <h2 id="pendingTasks">0</h2>
+                <p>Pending</p>
+            </div>
+
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+
+            <button class="filter active" data-filter="all">
+                All
+            </button>
+
+            <button class="filter" data-filter="pending">
+                Pending
+            </button>
+
+            <button class="filter" data-filter="completed">
+                Completed
+            </button>
+
+        </div>
+
+        <!-- Task List -->
+        <div id="taskList" class="task-list"></div>
+
+    </div>
+
+    <script src="todo.js"></script>
+
+</body>
+</html>
