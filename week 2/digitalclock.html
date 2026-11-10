@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        .clock {
+            font-size: 50px;
+            font-weight: bold;
+            color: #38bdf8;
+            margin-bottom: 30px;
+        }
+
+        .countdown {
+            font-size: 22px;
+            color: #facc15;
+            margin-top: 15px;
+        }
+
+        p {
+            color: #cbd5e1;
+        }
+
+        @media (max-width: 480px) {
+            .clock {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Digital Clock</h1>
+
+        <p>Current Time</p>
+
+        <div class="clock" id="clock">
+            00:00:00
+        </div>
+
+        <hr>
+
+        <h2>New Year Countdown 2027</h2>
+
+        <div class="countdown" id="countdown">
+            Loading...
+        </div>
+
+    </div>
+
+    <script>
+
+        const clock = document.getElementById("clock");
+        const countdown = document.getElementById("countdown");
+
+        function updateClock() {
+
+            const now = new Date();
+
+            let hours = String(now.getHours()).padStart(2, "0");
+            let minutes = String(now.getMinutes()).padStart(2, "0");
+            let seconds = String(now.getSeconds()).padStart(2, "0");
+
+            clock.textContent = `${hours}:${minutes}:${seconds}`;
+
+        }
+
+        function updateCountdown() {
+
+            const now = new Date();
+
+            const newYear = new Date("2027-01-01T00:00:00");
+
+            const difference = newYear - now;
+
+            if (difference <= 0) {
+                countdown.textContent = "Happy New Year!";
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+            const hours = Math.floor(
+                (difference / (1000 * 60 * 60)) % 24
+            );
+
+            const minutes = Math.floor(
+                (difference / (1000 * 60)) % 60
+            );
+
+            const seconds = Math.floor(
+                (difference / 1000) % 60
+            );
+
+            countdown.textContent =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        }
+
+        function update() {
+            updateClock();
+            updateCountdown();
+        }
+
+        update();
+
+        setInterval(update, 1000);
+
+    </script>
+
+</body>
+</html>
